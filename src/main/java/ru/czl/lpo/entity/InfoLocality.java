@@ -3,29 +3,37 @@ package ru.czl.lpo.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "info_locality", schema = "public", catalog = "LpoGis")
 public class InfoLocality {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private Object id;
+    private UUID id;
+
     @Basic
     @Column(name = "parent_ids", nullable = true)
-    private Object parentIds;
-    @Basic
-    @Column(name = "fo_id", nullable = true)
-    private Integer foId;
+    private UUID parentIds;
+
+//    @Basic
+//    @Column(name = "fo_id", nullable = true)
+//    private Integer foId; сопоставление ниже
+
     @Basic
     @Column(name = "region_id", nullable = true)
     private Integer regionId;
+
     @Basic
     @Column(name = "forestry_id", nullable = true)
     private Integer forestryId;
+
     @Basic
     @Column(name = "localforestry_id", nullable = true)
     private Integer localforestryId;
+
     @Basic
     @Column(name = "subforestry_id", nullable = true)
     private Integer subforestryId;
@@ -58,7 +66,7 @@ public class InfoLocality {
     private Boolean isOldRow;
     @Basic
     @Column(name = "tab_zone_ids", nullable = true)
-    private Object tabZoneIds;
+    private Integer tabZoneIds;
     @Basic
     @Column(name = "relevance_date_from", nullable = true)
     private Date relevanceDateFrom;
@@ -69,29 +77,48 @@ public class InfoLocality {
     @Column(name = "update_date", nullable = true)
     private Date updateDate;
 
+//------------------------------------------------------------
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fo_id")
+    private InfoDistrict infoDistrict;
+//------------------------------------------------
+
+    public InfoLocality() {
+    }
+
+    public InfoLocality(String area) {
+        this.area=area;
+    }
+
+//------------------------------------------------
+
+    public InfoDistrict getInfoDistrict () {return  infoDistrict;}
+    public void setInfoDistrict (InfoDistrict infoDistrict) {this.infoDistrict=infoDistrict;}
+
+//----------------------------------
     public Object getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Object getParentIds() {
+    public UUID getParentIds() {
         return parentIds;
     }
 
-    public void setParentIds(Object parentIds) {
+    public void setParentIds(UUID parentIds) {
         this.parentIds = parentIds;
     }
 
-    public Integer getFoId() {
-        return foId;
-    }
-
-    public void setFoId(Integer foId) {
-        this.foId = foId;
-    }
+//    public Integer getFoId() {
+//        return foId;
+//    }
+//
+//    public void setFoId(Integer foId) {
+//        this.foId = foId;
+//    }
 
     public Integer getRegionId() {
         return regionId;
@@ -197,11 +224,11 @@ public class InfoLocality {
         isOldRow = oldRow;
     }
 
-    public Object getTabZoneIds() {
+    public Integer getTabZoneIds() {
         return tabZoneIds;
     }
 
-    public void setTabZoneIds(Object tabZoneIds) {
+    public void setTabZoneIds(Integer tabZoneIds) {
         this.tabZoneIds = tabZoneIds;
     }
 
@@ -238,7 +265,7 @@ public class InfoLocality {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (parentIds != null ? !parentIds.equals(that.parentIds) : that.parentIds != null) return false;
-        if (foId != null ? !foId.equals(that.foId) : that.foId != null) return false;
+//        if (foId != null ? !foId.equals(that.foId) : that.foId != null) return false;
         if (regionId != null ? !regionId.equals(that.regionId) : that.regionId != null) return false;
         if (forestryId != null ? !forestryId.equals(that.forestryId) : that.forestryId != null) return false;
         if (localforestryId != null ? !localforestryId.equals(that.localforestryId) : that.localforestryId != null)
@@ -272,7 +299,7 @@ public class InfoLocality {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (parentIds != null ? parentIds.hashCode() : 0);
-        result = 31 * result + (foId != null ? foId.hashCode() : 0);
+//        result = 31 * result + (foId != null ? foId.hashCode() : 0);
         result = 31 * result + (regionId != null ? regionId.hashCode() : 0);
         result = 31 * result + (forestryId != null ? forestryId.hashCode() : 0);
         result = 31 * result + (localforestryId != null ? localforestryId.hashCode() : 0);

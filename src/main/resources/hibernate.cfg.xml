@@ -11,7 +11,7 @@
     <property name="connection.username">postgres</property>
     <property name="connection.password">postgres</property>
     <mapping class="ru.czl.lpo.entity.DataLpo"/>
-    <mapping class="ru.czl.lpo.entity.InfoDistricts"/>
+    <mapping class="ru.czl.lpo.entity.InfoDistrict"/>
     <mapping class="ru.czl.lpo.entity.InfoFhDangerZone"/>
     <mapping class="ru.czl.lpo.entity.InfoForestPurpose"/>
     <mapping class="ru.czl.lpo.entity.InfoForestUse"/>
