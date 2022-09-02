@@ -1,54 +1,17 @@
 package ru.czl.lpo.dao;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import ru.czl.lpo.entity.InfoDistrict;
-import ru.czl.lpo.entity.InfoLocality;
-import ru.czl.lpo.utils.HibernateUtil;
-
 import java.util.List;
+import java.util.Optional;
 
-public class InfoDistrictDao {
+public interface InfoDistrictDao<T> {
 
-    public InfoDistrict findById (Integer Id) {
-        return HibernateUtil.getSessionFactory().openSession().get(InfoDistrict.class,Id);
-    }
+    Optional<T> findById(Integer id); // поиск конктретного InfoDistrict
+    Optional<T> findInfoLocalityById(Integer Id); // поиск конктреного InfoLocality ??? Добавлять тут ???
 
-    public void save(InfoDistrict infoDistrict) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.save(infoDistrict);
-        tx1.commit();
-        session.close();
+    List<T> findAll(); // показать всех InfoDistrict
 
-    }
-
-    public void update(InfoDistrict infoDistrict) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.update(infoDistrict);
-        tx1.commit();
-        session.close();
-    }
-
-    public void delete(InfoDistrict infoDistrict) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.delete(infoDistrict);
-        tx1.commit();
-        session.close();
-    }
-
-    public InfoLocality findInfoLocalityById(Integer id) {
-        return HibernateUtil.getSessionFactory().openSession().get(InfoLocality.class,id);
-    }
-
-    public List<InfoDistrict> findAll() {
-        List<InfoDistrict> infoDistricts = (List<InfoDistrict>) HibernateUtil.getSessionFactory().openSession().createQuery("From InfoDistrict").list();
-        return infoDistricts;
-    }
-
-
-
+    void save(T t);
+    void update (T t);
+    void delete (T t);
 
 }
