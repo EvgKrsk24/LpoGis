@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface InfoDistrictDao<T> {
 
     Optional<T> findById(Integer id); // поиск конктретного InfoDistrict
-    Optional<T> findInfoLocalityById(Integer Id); // поиск конктреного InfoLocality ??? Добавлять тут ???
+    Optional<T> findInfoLocalityById(Integer Id); // поиск конктреного InfoLocality
 
     List<T> findAll(); // показать всех InfoDistrict
 

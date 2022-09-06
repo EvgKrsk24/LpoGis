@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "info_districts", schema = "public", catalog = "LpoGis")
-public class InfoDistrict {
+public class InfoDistrict { // федеральный округ
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
