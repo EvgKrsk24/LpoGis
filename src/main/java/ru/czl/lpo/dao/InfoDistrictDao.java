@@ -1,17 +1,20 @@
 package ru.czl.lpo.dao;
 
+import ru.czl.lpo.entity.InfoDistrict;
+import ru.czl.lpo.entity.InfoLocality;
+
 import java.util.List;
-import java.util.Optional;
 
-public interface InfoDistrictDao<T> {
+public interface InfoDistrictDao {
 
-    Optional<T> findById(Integer id); // поиск конктретного InfoDistrict
-    Optional<T> findInfoLocalityById(Integer Id); // поиск конктреного InfoLocality
+    public InfoDistrict findById (Integer id); // поиск конктретного InfoDistrict
+    public InfoLocality findInfoLocalityById(Integer id); // поиск конктреного InfoLocality
 
-    List<T> findAll(); // показать всех InfoDistrict
+    public List<InfoDistrict> findAll(); // показать всех InfoDistrict
 
-    void save(T t);
-    void update (T t);
-    void delete (T t);
+    void save(InfoDistrict infoDistrict);
 
+    void update(InfoDistrict infoDistrict);
+
+    void delete(InfoDistrict infoDistrict);
 }
